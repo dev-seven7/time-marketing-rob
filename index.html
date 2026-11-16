@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="cache-control" content="no-cache">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Time de Marketing · Prioridades</title>
+<style>
+  :root{
+    --bg:#0f1115; --surface:#171a21; --surface2:#1e222b; --line:#2a2f3a;
+    --txt:#e8eaed; --txt2:#9aa3b2; --txt3:#6b7483;
+    --todo:#ffa53d; --doing:#5bb8ff; --ok:#3ecf8e; --accent:#7c8cff;
+  }
+  @media (prefers-color-scheme: light){
+    :root{ --bg:#f4f6fa; --surface:#fff; --surface2:#f0f3f8; --line:#e2e7f0;
+      --txt:#1a1d24; --txt2:#5a6474; --txt3:#8b94a5; --todo:#c76f00; --doing:#1a7fc9; --ok:#14935a; }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--txt);
+    font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased;padding-bottom:40px}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+  header{background:linear-gradient(135deg,#1b1f2b,#2a2140);border-bottom:1px solid var(--line);padding:28px 0 24px;margin-bottom:22px}
+  @media (prefers-color-scheme: light){header{background:linear-gradient(135deg,#2a2140,#3d2f5c)}}
+  header h1{margin:0;font-size:26px;letter-spacing:-.4px;color:#fff}
+  header .sub{color:#b9bfd0;font-size:14px;margin-top:6px}
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:0 0 28px}
+  .kpi{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center}
+  .kpi b{display:block;font-size:26px;line-height:1.1}
+  .kpi span{font-size:11px;color:var(--txt2);text-transform:uppercase;letter-spacing:.5px}
+  section{margin-bottom:32px}
+  h2{font-size:19px;margin:0 0 6px}
+  .nota{font-size:13px;color:var(--txt3);margin:0 0 14px}
+  .legenda{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+  .bloco{background:var(--surface);border:1px solid var(--line);border-radius:14px;margin-bottom:12px;overflow:hidden}
+  .bloco > summary{padding:14px 16px;cursor:pointer;display:flex;align-items:center;gap:12px;list-style:none}
+  .bloco > summary::-webkit-details-marker{display:none}
+  .bloco > summary:hover{background:var(--surface2)}
+  .bloco > summary::after{content:"▾";color:var(--txt3);margin-left:4px}
+  .bloco[open] > summary::after{content:"▴"}
+  .who{flex:1;min-width:0}
+  .who b{display:block;font-size:16px}
+  .who span{font-size:13px;color:var(--txt2)}
+  .bar{width:110px;height:6px;background:var(--surface2);border-radius:6px;overflow:hidden}
+  .bar i{display:block;height:100%;background:var(--ok)}
+  .prog{font-size:12px;color:var(--txt2);white-space:nowrap}
+  .itens{border-top:1px solid var(--line);padding:2px 16px 10px}
+  .item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line)}
+  .item:last-child{border-bottom:none}
+  .item .b{flex:1;min-width:0}
+  .item .t{font-weight:600;font-size:15px}
+  .item.done .t{opacity:.5;text-decoration:line-through}
+  .item .n{font-size:13px;color:var(--txt2);margin-top:2px}
+  .meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;align-items:center}
+  .quando{font-size:12px;color:var(--txt3)}
+  a.ref{font-size:12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--surface2);border:1px solid var(--line);
+    border-radius:6px;padding:2px 8px;color:var(--accent);text-decoration:none}
+  a.ref:hover{border-color:var(--accent)}
+  .st{font-size:11px;font-weight:700;border-radius:6px;padding:3px 8px;white-space:nowrap;letter-spacing:.2px}
+  .st.todo{background:color-mix(in srgb,var(--todo) 16%,transparent);color:var(--todo)}
+  .st.doing{background:color-mix(in srgb,var(--doing) 16%,transparent);color:var(--doing)}
+  .st.done{background:color-mix(in srgb,var(--ok) 16%,transparent);color:var(--ok)}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+  .card .t{font-weight:700;margin-bottom:4px}
+  .card .q{font-size:13px;color:var(--accent);font-weight:600;margin-bottom:6px}
+  .card .n{font-size:14px;color:var(--txt2)}
+  .dias{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  .dia{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+  .dia h3{margin:0 0 8px;font-size:14px;color:var(--accent)}
+  .dia ul{margin:0;padding-left:16px;font-size:13px;color:var(--txt2)}
+  .dia li{margin:4px 0}
+  .prox{display:flex;flex-wrap:wrap;gap:8px}
+  .prox span{font-size:13px;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:6px 13px;color:var(--txt2)}
+  footer{color:var(--txt3);font-size:13px;text-align:center;padding:24px 16px 0;border-top:1px solid var(--line)}
+  @media (max-width:860px){ .dias{grid-template-columns:1fr 1fr} }
+  @media (max-width:640px){
+    .kpis{grid-template-columns:repeat(2,1fr)} .grid,.dias{grid-template-columns:1fr}
+    header h1{font-size:21px} .bar{display:none}
+  }
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <h1>🚀 Time de Marketing · Grupo ROB</h1>
+  <div class="sub">Prioridades da semana de 16 a 19/11 · fechadas com o Matheus · <span id="upd"></span></div>
+</div></header>
+
+<div class="wrap">
+  <div class="kpis">
+    <div class="kpi"><b id="k-total">0</b><span>prioridades</span></div>
+    <div class="kpi"><b id="k-doing" style="color:var(--doing)">0</b><span>em andamento</span></div>
+    <div class="kpi"><b id="k-done" style="color:var(--ok)">0</b><span>feitas</span></div>
+    <div class="kpi"><b id="k-dias" style="color:var(--todo)">0</b><span>dias até 19/11</span></div>
+  </div>
+
+  <section>
+    <h2>👥 O que cada um assume</h2>
+    <p class="nota">Clica no nome pra abrir as frentes. Cada item leva pra issue onde a demanda é tratada; qualquer ponto, atualiza no GitHub e avisa no grupo.</p>
+    <div class="legenda"><span class="st todo">⏳ a fazer</span><span class="st doing">🔄 em andamento</span><span class="st done">✅ feito</span></div>
+    <div id="pessoas"></div>
+  </section>
+
+  <section>
+    <h2>🤝 O que é dividido</h2>
+    <p class="nota">Frentes com mais de uma pessoa: quem puxa e quem entra em cada etapa.</p>
+    <div class="grid" id="divididas"></div>
+  </section>
+
+  <section>
+    <h2>📆 A semana por dia</h2>
+    <p class="nota">Principais entregas e marcos de cada dia.</p>
+    <div class="dias" id="dias"></div>
+  </section>
+
+  <section>
+    <h2>⏭️ Próxima semana (a partir de 23/11)</h2>
+    <p class="nota">Já no radar, entram na pauta da próxima segunda.</p>
+    <div class="prox" id="prox"></div>
+  </section>
+
+  <footer>Status atualizado pela Manu e pelo THEO conforme o GitHub anda.</footer>
+</div>
+
+<script>
+const DADOS = {"atualizado": "16/11/2026 · 16h", "pessoas": [{"id": "victor", "nome": "Victor Pusanovsky", "papel": "Analista · Ogro", "emoji": "📊", "itens": [{"t": "1ª versão da LP da Ogro SG", "s": "doing", "w": "seg 16/11", "n": "", "c": "cs-ogro-steaks#28", "u": "https://github.com/dev-seven7/cs-ogro-steaks/issues/28"}, {"t": "LP da Ogro SG no ar", "s": "todo", "w": "até qua 18/11", "n": "", "c": "cs-ogro-steaks#28", "u": "https://github.com/dev-seven7/cs-ogro-steaks/issues/28"}, {"t": "Tráfego preparado pra ativação", "s": "todo", "w": "semana", "n": "", "c": "cs-ogro-steaks#14", "u": "https://github.com/dev-seven7/cs-ogro-steaks/issues/14#issuecomment-6925734831"}, {"t": "Linktree no link unificado do cardápio próprio (DataBite)", "s": "doing", "w": "semana", "n": "Linktree já atualizado por loja em 13/11; falta o link unificado.", "c": "cs-ogro-steaks#14", "u": "https://github.com/dev-seven7/cs-ogro-steaks/issues/14"}, {"t": "Passar gargalos e prazo pra estrutura ficar 100% (LP, Linktree ou link na bio pelo site demo)", "s": "todo", "w": "semana", "n": "", "c": "cs-ogro-steaks#14", "u": "https://github.com/dev-seven7/cs-ogro-steaks/issues/14#issuecomment-6925734831"}, {"t": "Validar os criativos de inauguração com a Luiza e o Otávio", "s": "doing", "w": "semana", "n": "", "c": "cs-ogro-steaks#29", "u": "https://github.com/dev-seven7/cs-ogro-steaks/issues/29"}]}, {"id": "luiza", "nome": "Luiza Meneses", "papel": "Social Media", "emoji": "📱", "itens": [{"t": "Cronograma final dos criativos da Ogro SG", "s": "doing", "w": "seg 16/11", "n": "", "c": "cs-ogro-steaks#29", "u": "https://github.com/dev-seven7/cs-ogro-steaks/issues/29#issuecomment-6925736016"}, {"t": "Gravação de expansão com o Matheus", "s": "todo", "w": "ter 17/11 · 17h", "n": "", "c": "cs-rob-food#127", "u": "https://github.com/dev-seven7/cs-rob-food/issues/127#issuecomment-6925737095"}, {"t": "Influs da Ogro SG: aquecimento (20 a 25/11) + dia da inauguração (27/11)", "s": "doing", "w": "semana", "n": "", "c": "cs-ogro-steaks#14", "u": "https://github.com/dev-seven7/cs-ogro-steaks/issues/14#issuecomment-6925734831"}, {"t": "Calendário de novembro 100% agendado (Instagram, TikTok, YouTube Shorts)", "s": "doing", "w": "até qui 19/11", "n": "Calendários: Øliver's #240, Ogro #33, Temakeria #249, ROB #126.", "c": "cs-olivers#240", "u": "https://github.com/dev-seven7/cs-olivers/issues/240#issuecomment-6925737759"}, {"t": "Ads de Copa e Lapa: reformular os anúncios gerais da conta (com o Otávio)", "s": "todo", "w": "até qui 19/11", "n": "Direcionamento da Ghost no Notion (links na issue).", "c": "cs-olivers#240", "u": "https://github.com/dev-seven7/cs-olivers/issues/240#issuecomment-6925737759"}, {"t": "Social de todas as contas rodando 100% (postagens, stories, comentários)", "s": "doing", "w": "contínuo", "n": ""}, {"t": "Postar os vídeos pós-Pelé depois da aprovação", "s": "doing", "w": "seg 16/11", "n": "", "c": "cs-ogro-steaks#38", "u": "https://github.com/dev-seven7/cs-ogro-steaks/issues/38"}]}, {"id": "otavio", "nome": "Otávio Leocádio", "papel": "Produtor de Conteúdo", "emoji": "🎬", "itens": [{"t": "Vídeos pós-Pelé: Ogro e Øliver's", "s": "doing", "w": "seg 16/11", "n": "", "c": "cs-ogro-steaks#38", "u": "https://github.com/dev-seven7/cs-ogro-steaks/issues/38#issuecomment-6925736546"}, {"t": "Vídeo de expansão do Grupo ROB (olhar do evento)", "s": "todo", "w": "semana", "n": "", "c": "cs-ogro-steaks#38", "u": "https://github.com/dev-seven7/cs-ogro-steaks/issues/38"}, {"t": "Editar os conteúdos da semana pra Luiza agendar", "s": "doing", "w": "seg 16 e ter 17/11", "n": "Não vai na gravação de terça.", "c": "cs-olivers#240", "u": "https://github.com/dev-seven7/cs-olivers/issues/240#issuecomment-6925737759"}, {"t": "100% na edição dos conteúdos de expansão gravados com o Matheus", "s": "todo", "w": "qua 18/11", "n": "Fim do dia de quarta: primeiros aprovados. Quinta: todos aprovados pra subir no tráfego.", "c": "cs-rob-food#127", "u": "https://github.com/dev-seven7/cs-rob-food/issues/127#issuecomment-6925737095"}, {"t": "Ads de Copa e Lapa: reformular os anúncios gerais (com a Luiza)", "s": "todo", "w": "até qui 19/11", "n": "", "c": "cs-olivers#240", "u": "https://github.com/dev-seven7/cs-olivers/issues/240"}, {"t": "TBT com o carrossel de fotos profissionais da corrida", "s": "todo", "w": "qui 19/11", "n": "", "c": "cs-ogro-steaks#38", "u": "https://github.com/dev-seven7/cs-ogro-steaks/issues/38"}]}, {"id": "gabimanu", "nome": "Gabi + Manu", "papel": "Head de Marketing (transição)", "emoji": "🤝", "itens": [{"t": "Fechamento das prioridades do mês e do fim de ano", "s": "doing", "w": "semana", "n": ""}, {"t": "Réveillon Øliver's Araruama", "s": "doing", "w": "reunião qua 18/11", "n": "Junto com o Matheus.", "c": "cs-olivers#160", "u": "https://github.com/dev-seven7/cs-olivers/issues/160#issuecomment-6925739848"}, {"t": "Natal Øliver's com a Coca-Cola", "s": "doing", "w": "reunião qua 18/11", "n": "", "c": "cs-olivers#243", "u": "https://github.com/dev-seven7/cs-olivers/issues/243#issuecomment-6925740431"}, {"t": "Resultados de 30 dias da Temakeria (tráfego + vendas)", "s": "todo", "w": "até 19/11", "n": ""}, {"t": "Transição Gabi → Manu (processos, materiais, pendências)", "s": "doing", "w": "até 19/11", "n": ""}]}, {"id": "matheus", "nome": "Matheus", "papel": "CMO", "emoji": "🧭", "itens": [{"t": "Gravação dos conteúdos de expansão (com a Luiza)", "s": "todo", "w": "ter 17/11 · 17h", "n": "", "c": "cs-rob-food#127", "u": "https://github.com/dev-seven7/cs-rob-food/issues/127"}, {"t": "Orçamento de tráfego por marca e unidade (com a Manu)", "s": "todo", "w": "até 19/11", "n": ""}, {"t": "Contratações do setor (com a Manu)", "s": "doing", "w": "semana", "n": ""}, {"t": "Produtos e plano de marketing 2027 (com a Manu)", "s": "todo", "w": "1ª semana de dez", "n": ""}]}, {"id": "manu", "nome": "Manu", "papel": "Head de Marketing", "emoji": "👩‍💼", "itens": [{"t": "Aprovar os vídeos pós-Pelé", "s": "doing", "w": "seg 16/11", "n": "", "c": "cs-ogro-steaks#38", "u": "https://github.com/dev-seven7/cs-ogro-steaks/issues/38"}, {"t": "Aprovar os conteúdos de expansão (primeiros na quarta, todos na quinta)", "s": "todo", "w": "qua 18 e qui 19/11", "n": "", "c": "cs-rob-food#127", "u": "https://github.com/dev-seven7/cs-rob-food/issues/127"}, {"t": "Briefing do panfleto \"Seja um franqueado\" (Øliver's primeiro)", "s": "todo", "w": "semana", "n": "", "c": "cs-rob-food#132", "u": "https://github.com/dev-seven7/cs-rob-food/issues/132"}, {"t": "Gatola: ajustes das peças com a designer + retorno do Espaço Z", "s": "doing", "w": "semana", "n": "", "c": "cs-olivers#242", "u": "https://github.com/dev-seven7/cs-olivers/issues/242"}, {"t": "Calendários de Øliver's, Temakeria e ROB (com Luiza e Otávio)", "s": "doing", "w": "semana", "n": ""}]}], "divididas": [{"t": "🥩 Inauguração Ogro SG", "quem": "Victor (dono) · Luiza · Otávio · aprovação Manu", "n": "Operação ghost nos marketplaces de 20 a 27/11 e inauguração oficial em 27/11. Victor cuida de LP, tráfego e ecossistema; Luiza e Otávio dos criativos e influs.", "c": "cs-ogro-steaks#14", "u": "https://github.com/dev-seven7/cs-ogro-steaks/issues/14"}, {"t": "🎥 Mini ação de expansão", "quem": "Matheus + Luiza (gravação) · Otávio (edição) · Manu (aprovação) · Celso (tráfego)", "n": "Gravação ter 17/11 às 17h · edição qua 18/11 · aprovação final qui 19/11 e sobe no tráfego.", "c": "cs-rob-food#127", "u": "https://github.com/dev-seven7/cs-rob-food/issues/127"}, {"t": "📣 Ads de Copacabana e Lapa", "quem": "Luiza + Otávio · envio pro Celso", "n": "Reformular os anúncios gerais das contas seguindo a gestão de criativos de novembro da Ghost. Envio até qui 19/11.", "c": "cs-olivers#240", "u": "https://github.com/dev-seven7/cs-olivers/issues/240"}, {"t": "🗓️ Calendário de novembro", "quem": "Luiza (agenda) + Otávio (edição) · Manu e Victor (planejamento)", "n": "Tudo programado no Instagram, TikTok e YouTube Shorts das 4 contas.", "c": "cs-olivers#240", "u": "https://github.com/dev-seven7/cs-olivers/issues/240"}, {"t": "🎆 Réveillon Araruama + 🎄 Natal Coca-Cola", "quem": "Gabi + Manu, com o Matheus", "n": "Reunião única na quarta (18/11) pra alinhar os dois.", "c": "cs-olivers#160", "u": "https://github.com/dev-seven7/cs-olivers/issues/160"}, {"t": "🏃 Pós-Pelé", "quem": "Otávio (edição) + Luiza (postagem) · Manu (aprovação)", "n": "Vídeo Ogro, vídeo Øliver's, institucional do ROB pra expansão e TBT de quinta.", "c": "cs-ogro-steaks#38", "u": "https://github.com/dev-seven7/cs-ogro-steaks/issues/38"}], "dias": [{"d": "Seg 16/11", "itens": ["Victor: 1ª versão da LP da Ogro SG", "Luiza: cronograma final dos criativos da Ogro SG", "Otávio: vídeos pós-Pelé + conteúdos da semana", "Manu: aprovação dos vídeos pós-Pelé"]}, {"d": "Ter 17/11", "itens": ["17h: gravação de expansão (Matheus + Luiza)", "16h: call do site e social selling da expansão", "Otávio: conteúdos da semana pra Luiza agendar"]}, {"d": "Qua 18/11", "itens": ["Otávio: 100% na edição da expansão · fim do dia, primeiros aprovados", "LP da Ogro SG no ar (Victor)", "Reunião Réveillon + Natal (Gabi, Manu, Matheus)"]}, {"d": "Qui 19/11", "itens": ["Todos os vídeos de expansão aprovados e no tráfego", "Ads de Copa e Lapa enviados pro Celso", "Calendário de novembro 100% agendado", "TBT da corrida"]}, {"d": "Sex 20/11", "itens": ["Feriado · operação ghost da Ogro SG começa nos marketplaces"]}], "proxima": ["Grande ação de expansão (videomaker + fotógrafo)", "Identidade visual do Øliver Sushi", "Ações iFood Ads Black Friday (27 e 28/11)", "Inauguração oficial da Ogro SG (27/11)", "Comunidade da Ogro + ManyChat", "Banco de trends e mapeamento de influenciadores", "Conteúdo de dezembro produzido e aprovado até 18/12", "Rotina de gestão: diárias, semanais e mensais"]};
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const ST={todo:"⏳ a fazer",doing:"🔄 em andamento",done:"✅ feito"};
+const ref=o=>o.u?`<a class="ref" href="${esc(o.u)}" target="_blank" rel="noopener">${esc(o.c)} ↗</a>`:"";
+document.getElementById("upd").textContent="atualizado em "+DADOS.atualizado;
+let tot=0,doing=0,done=0;
+document.getElementById("pessoas").innerHTML=DADOS.pessoas.map(p=>{
+  const f=p.itens.filter(i=>i.s==="done").length; tot+=p.itens.length; done+=f; doing+=p.itens.filter(i=>i.s==="doing").length;
+  const pct=Math.round(f/p.itens.length*100);
+  return `<details class="bloco"><summary><span style="font-size:22px">${p.emoji}</span>
+    <span class="who"><b>${esc(p.nome)}</b><span>${esc(p.papel)}</span></span>
+    <span class="bar"><i style="width:${pct}%"></i></span><span class="prog">${f}/${p.itens.length}</span></summary>
+    <div class="itens">${p.itens.map(i=>`<div class="item ${i.s==="done"?"done":""}">
+      <span class="st ${i.s}">${ST[i.s]}</span>
+      <div class="b"><div class="t">${esc(i.t)}</div>${i.n?`<div class="n">${esc(i.n)}</div>`:""}
+      <div class="meta">${i.w?`<span class="quando">🗓️ ${esc(i.w)}</span>`:""}${ref(i)}</div></div></div>`).join("")}</div></details>`;
+}).join("");
+document.getElementById("k-total").textContent=tot;
+document.getElementById("k-doing").textContent=doing;
+document.getElementById("k-done").textContent=done;
+document.getElementById("divididas").innerHTML=DADOS.divididas.map(d=>`<div class="card"><div class="t">${esc(d.t)}</div>
+  <div class="q">${esc(d.quem)}</div><div class="n">${esc(d.n)}</div><div class="meta">${ref(d)}</div></div>`).join("");
+document.getElementById("dias").innerHTML=DADOS.dias.map(d=>`<div class="dia"><h3>${esc(d.d)}</h3><ul>${d.itens.map(i=>`<li>${esc(i)}</li>`).join("")}</ul></div>`).join("");
+document.getElementById("prox").innerHTML=DADOS.proxima.map(t=>`<span>${esc(t)}</span>`).join("");
+(function(){const alvo=new Date(2026,10,19);const h=new Date();h.setHours(0,0,0,0);
+  document.getElementById("k-dias").textContent=Math.max(0,Math.round((alvo-h)/86400000));})();
+</script>
+</body>
+</html>
