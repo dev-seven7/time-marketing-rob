@@ -2839,7 +2839,7 @@ window.addEventListener("hashchange",abrir); abrir();
 
 // ===== checks sincronizados =====
 (function(){
-const BASE='__API__';
+const BASE='https://checks-time-mkt.grupo-rob-mkt.workers.dev';
 const hash=t=>{let h=5381;for(const c of String(t))h=((h<<5)+h+c.charCodeAt(0))|0;return (h>>>0).toString(36)};
 let quem=''; try{quem=localStorage.getItem('painel-quem')||''}catch(e){}
 const pedeQuem=()=>{if(quem)return quem; const r=prompt('Quem está marcando? (Manu, Luiza, Otávio, Victor ou Matheus)','');
