@@ -91,6 +91,14 @@
     .kpis{grid-template-columns:repeat(2,1fr)} .grid,.dias,.marcos{grid-template-columns:1fr}
     header h1{font-size:21px} .bar{display:none}
   }
+  .ck{width:20px;height:20px;margin-top:2px;accent-color:var(--ok);flex:none;cursor:pointer}
+  .por{font-size:11px;color:var(--ok);font-weight:600}
+  .live{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 16px;margin-bottom:26px}
+  .live h2{font-size:17px}
+  .live .cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media (max-width:760px){.live .cols{grid-template-columns:1fr}}
+  .live ul{margin:4px 0 0;padding-left:18px;font-size:13px;color:var(--txt2)} .live li{margin-bottom:3px}
+  .live .sy{font-size:12px;font-weight:600}
 </style>
 </head>
 <body>
@@ -162,7 +170,7 @@
 
 <script>
 const DADOS = {
- "atualizado": "23/11/2026 · segunda 12h (pós-call do time)",
+ "atualizado": "23/11/2026 · segunda 15h",
  "hoje": [
   {
    "id": "h-vaga",
@@ -605,6 +613,15 @@ const DADOS = {
      "u": "https://dev-seven7.github.io/captacao-natal-24-11/"
     },
     {
+     "t": "⏳ Fechar até ter 24/11: aprovação da Manu (aquecimento + mix do dia 27) · horário de abertura com a Alline (proposta: 17h30 Lista VIP, 19h30 todo mundo) · estoque do P.C.Q por unidade com o Igor",
+     "s": "todo",
+     "w": "até ter 24/11",
+     "n": "",
+     "q": "",
+     "c": "caderno Ogro · Black",
+     "u": "https://dev-seven7.github.io/caderno-victorpob/#black-aquec"
+    },
+    {
      "t": "🔴 Post de SG no feed hoje com a data 04/12: aprovar com a Luiza e ver com o Matheus pra turbinar",
      "s": "todo",
      "w": "seg 23/11",
@@ -751,11 +768,11 @@ const DADOS = {
     {
      "t": "Black Friday Ogro no Cardápio Digital (1 PCQ por R$ 1,00) com a Luiza",
      "s": "doing",
-     "w": "aquecimento 25 e 26 · oficial 27/11",
-     "n": "",
+     "w": "aquecimento 24, 25 e 26 · oficial 27/11",
+     "n": "Aquecimento: Reels “A fita crepe” (24/11) e “O carimbo chegou” (26/11) + 2 stories por dia de 24 a 26/11 · dia 27: mix “O carimbo” (6 stories + Reels). Gravação na captação de 24/11.",
      "q": "",
-     "u": "https://dev-seven7.github.io/caderno-victorpob/#blackfriday",
-     "c": "caderno Ogro · BF"
+     "u": "https://dev-seven7.github.io/caderno-victorpob/#black-aquec",
+     "c": "caderno Ogro · Black"
     },
     {
      "t": "Ogro Bells (Natal): pauta e produção de conteúdo",
@@ -1472,7 +1489,8 @@ const DADOS = {
     "Otávio: TODAS as edições da semana fechadas",
     "Analista começa",
     "Tráfego Ogro SG no ar",
-    "Pauta da Reunião de MKT"
+    "Pauta da Reunião de MKT",
+    "Ogro: Reels de aquecimento da Black “A fita crepe”"
    ]
   },
   {
@@ -1490,7 +1508,8 @@ const DADOS = {
     "Presencial 12h às 19h: cada marca por bloco + fechar a semana",
     "Influs da Black Friday recebem o pedido",
     "Aquecimento BF",
-    "Último dia dos stories do Gatola"
+    "Último dia dos stories do Gatola",
+    "Ogro: Reels “O carimbo chegou”"
    ]
   },
   {
@@ -2817,6 +2836,41 @@ function abrir(){const id=location.hash.slice(1);if(!id)return;const el=document
 window.addEventListener("hashchange",abrir); abrir();
 (function(){const alvo=new Date(2026,10,27);const h=new Date();h.setHours(0,0,0,0);
   document.getElementById("k-dias").textContent=Math.max(0,Math.round((alvo-h)/86400000));})();
+
+// ===== checks sincronizados =====
+(function(){
+const BASE='__API__';
+const hash=t=>{let h=5381;for(const c of String(t))h=((h<<5)+h+c.charCodeAt(0))|0;return (h>>>0).toString(36)};
+let quem=''; try{quem=localStorage.getItem('painel-quem')||''}catch(e){}
+const pedeQuem=()=>{if(quem)return quem; const r=prompt('Quem está marcando? (Manu, Luiza, Otávio, Victor ou Matheus)','');
+  quem=(r||'').trim().slice(0,30)||'time'; try{localStorage.setItem('painel-quem',quem)}catch(e){} return quem};
+let st={};
+const live=document.createElement('div'); live.className='live';
+live.innerHTML='<h2>✅ Checks do time · ao vivo</h2><p class="nota" style="margin:0 0 8px">O que a Luiza e o Otávio marcaram nas dailies deles e quem marcou no painel. Atualiza sozinho a cada 30 s. <span class="sy" id="sy"></span></p><div class="cols"><div><b>📱 Luiza</b><ul id="lv-luiza"><li>carregando…</li></ul></div><div><b>🎬 Otávio</b><ul id="lv-otavio"><li>carregando…</li></ul></div></div>';
+const k1=document.querySelector('.kpis'); if(k1&&k1.parentNode) k1.parentNode.insertBefore(live,k1.nextSibling);
+const items=[...document.querySelectorAll('.item')];
+items.forEach(el=>{const t=el.querySelector('.t'); if(!t)return; const k='i-'+hash(t.textContent);
+  const cb=document.createElement('input'); cb.type='checkbox'; cb.className='ck'; cb.dataset.k=k; cb.dataset.t=t.textContent.slice(0,150);
+  cb.dataset.base=el.classList.contains('done')?'1':''; cb.checked=!!cb.dataset.base; if(cb.dataset.base)cb.disabled=true;
+  el.insertBefore(cb,el.firstChild);
+  cb.addEventListener('change',()=>salvar(cb));});
+function pinta(){document.querySelectorAll('.ck').forEach(cb=>{if(cb.dataset.base)return; const v=st[cb.dataset.k]; const el=cb.closest('.item');
+  cb.checked=!!v; el.classList.toggle('done',!!v); let s=el.querySelector('.por'); 
+  if(v){if(!s){s=document.createElement('span');s.className='por';(el.querySelector('.meta')||el).appendChild(s)} s.textContent='✅ '+(v.by||'')+' · '+fmt(v.at)}
+  else if(s) s.remove();});}
+const fmt=a=>{try{const d=new Date(a);return d.toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit'})+' '+d.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})}catch(e){return ''}};
+const sy=(ok,m)=>{const e=document.getElementById('sy'); if(e){e.textContent=m; e.style.color=ok?'var(--ok)':'var(--todo)'}};
+async function salvar(cb){const by=pedeQuem(); const v=cb.checked;
+  if(v) st[cb.dataset.k]={by,at:new Date().toISOString()}; else delete st[cb.dataset.k]; pinta();
+  try{const r=await fetch(BASE+'/s/time',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({k:cb.dataset.k,v,t:cb.dataset.t,by})}); if(!r.ok)throw 0; st=await r.json(); pinta(); sy(true,'✓ sincronizado')}
+  catch(e){sy(false,'sem conexão: esse check não salvou, tenta de novo')}}
+function lista(id,j){const ul=document.getElementById(id); const arr=Object.values(j).sort((a,b)=>(b.at||'').localeCompare(a.at||''));
+  ul.innerHTML=arr.length?arr.slice(0,12).map(x=>`<li>${esc(x.t)} <span class="por">${fmt(x.at)}</span></li>`).join(''):'<li>nada marcado ainda</li>';}
+async function puxar(){ if(!BASE.startsWith('http')){sy(false,'sincronização ainda não ligada');return}
+  try{const [a,b,c]=await Promise.all(['time','luiza','otavio'].map(x=>fetch(BASE+'/s/'+x,{cache:'no-store'}).then(r=>{if(!r.ok)throw 0;return r.json()})));
+    st=a; pinta(); lista('lv-luiza',b); lista('lv-otavio',c); sy(true,'✓ sincronizado');}catch(e){sy(false,'sem conexão com a sincronização')}}
+puxar(); setInterval(puxar,30000);
+})();
 </script>
 </body>
 </html>
