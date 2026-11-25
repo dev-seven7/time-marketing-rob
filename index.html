@@ -120,7 +120,7 @@
   <h2 style="margin-bottom:10px">📍 Marcos até o fim do ano</h2>
   <div class="marcos" id="marcos"></div>
 
-  <div class="divisor" id="hoje">🔥 Bater hoje · seg 23/11</div>
+  <div class="divisor" id="hoje">🔥 Bater hoje · qua 25/11</div>
   <section>
     <p class="nota">As frentes que precisam andar hoje, em ordem. Clica pra abrir.</p>
     <div id="lista-hoje"></div>
@@ -170,419 +170,78 @@
 
 <script>
 const DADOS = {
- "atualizado": "23/11/2026 · segunda 15h",
+ "atualizado": "25/11/2026 · quarta 12h12",
  "hoje": [
-  {
-   "id": "h-vaga",
-   "emoji": "🧑‍💻",
-   "t": "1 · Analista da Øliver's: entrevistas e decisão",
-   "quem": "Manu · Matheus",
-   "itens": [
-    {
-     "t": "Entrevistas: 11h45 Carolina · 12h15 Joyce · 12h45 Patrícia",
-     "s": "todo",
-     "w": "seg 23/11",
-     "n": "",
-     "q": "Manu"
-    },
-    {
-     "t": "Decidir entre os finalistas (Fábio, Emeric e as novas): Matheus junto ou ligação à tarde",
-     "s": "todo",
-     "w": "seg 23/11",
-     "n": "",
-     "q": "Manu + Matheus"
-    },
-    {
-     "t": "Analista começa + onboarding (acessos, Claude, GitHub, Drive)",
-     "s": "todo",
-     "w": "ter 24/11",
-     "n": "",
-     "q": "Manu"
-    }
-   ]
-  },
-  {
-   "id": "h-rev",
-   "emoji": "🎆",
-   "t": "2 · Réveillon Araruama: teaser no ar",
-   "quem": "Luiza · Otávio · Manu · Matheus",
-   "itens": [
-    {
-     "t": "Teaser no ar hoje: “vem aí o melhor Réveillon de Araruama, em breve” (imagens do ano passado, sem data, sem preço, sem reserva)",
-     "s": "todo",
-     "w": "seg 23/11 cedo",
-     "n": "",
-     "q": "Luiza",
-     "c": "cs-olivers#160",
-     "u": "https://github.com/dev-seven7/cs-olivers/issues/160"
-    },
-    {
-     "t": "Stories com enquete + caixinha + automação (nome e telefone) → lista pra central",
-     "s": "todo",
-     "w": "seg 23/11",
-     "n": "",
-     "q": "Luiza",
-     "c": "cs-olivers#160",
-     "u": "https://github.com/dev-seven7/cs-olivers/issues/160"
-    },
-    {
-     "t": "Custo da noite → preço por setor e lotes",
-     "s": "doing",
-     "w": "esta semana",
-     "n": "",
-     "q": "Matheus + Alline",
-     "c": "cs-olivers#160",
-     "u": "https://github.com/dev-seven7/cs-olivers/issues/160"
-    },
-    {
-     "t": "Definir quem faz a LP (Ghost ou interno)",
-     "s": "todo",
-     "w": "LP no ar até 27/11",
-     "n": "",
-     "q": "Manu",
-     "c": "cs-olivers#160",
-     "u": "https://github.com/dev-seven7/cs-olivers/issues/160"
-    }
-   ]
-  },
-  {
-   "id": "h-ogro",
-   "emoji": "🥩",
-   "t": "3 · Ogro SG: criativos fecham hoje, tráfego amanhã",
-   "quem": "Victor · Otávio · Luiza",
-   "itens": [
-    {
-     "t": "Post de SG no feed HOJE com a data 04/12 (melhor criativo) + turbinar pelo Instagram",
-     "s": "todo",
-     "w": "seg 23/11",
-     "n": "",
-     "q": "Luiza + Victor + Matheus",
-     "c": "cs-ogro-steaks#14",
-     "u": "https://github.com/dev-seven7/cs-ogro-steaks/issues/14"
-    },
-    {
-     "t": "Criativos do funil (33 peças, cupom 10%) finalizados",
-     "s": "doing",
-     "w": "seg 23/11",
-     "n": "Fala do Jimmy com voz clonada no ElevenLabs (agente) · 2 alterações do Victor · o de entrega em SG fica pra gravação",
-     "q": "Victor + Otávio",
-     "c": "cs-ogro-steaks#37",
-     "u": "https://github.com/dev-seven7/cs-ogro-steaks/issues/37"
-    },
-    {
-     "t": "TikTok da Ogro ativado",
-     "s": "todo",
-     "w": "seg 23/11",
-     "n": "",
-     "q": "Victor",
-     "c": "cs-ogro-steaks#41",
-     "u": "https://github.com/dev-seven7/cs-ogro-steaks/issues/41"
-    },
-    {
-     "t": "Tráfego no ar",
-     "s": "todo",
-     "w": "ter 24/11",
-     "n": "",
-     "q": "Victor",
-     "c": "cs-ogro-steaks#14",
-     "u": "https://github.com/dev-seven7/cs-ogro-steaks/issues/14"
-    },
-    {
-     "t": "Cardápio digital 04/12: combos só no cardápio + brinde + influs falando",
-     "s": "todo",
-     "w": "Manu + Matheus + Victor olham depois da call das 16h com a Alline (dono do projeto: João)",
-     "n": "",
-     "q": "Victor",
-     "c": "cs-ogro-steaks#14",
-     "u": "https://github.com/dev-seven7/cs-ogro-steaks/issues/14"
-    },
-    {
-     "t": "Lista de influs pagos (3 a 4) pro Matheus aprovar e pagar",
-     "s": "todo",
-     "w": "fechar hoje 23/11",
-     "n": "Nit Dicas e SG pro Mundo + mais alguns parceiros. Manu + Victor fecham, o Matheus aprova e paga.",
-     "q": "Victor + Matheus",
-     "c": "cs-ogro-steaks#14",
-     "u": "https://github.com/dev-seven7/cs-ogro-steaks/issues/14"
-    },
-    {
-     "t": "Captação de Natal ter 24/11 (SushiTone + Ogro Bells): roteiro, takes e 3 trends de Natal por marca",
-     "s": "todo",
-     "w": "preparar hoje",
-     "n": "",
-     "q": "Otávio + Luiza + Victor",
-     "c": "roteiro",
-     "u": "https://dev-seven7.github.io/captacao-natal-24-11/"
-    },
-    {
-     "t": "Influs da inauguração: lista da Luiza no agente do Otávio + conferir confirmações do dia 04 (Nit Dicas e SG pro Mundo com a Manu)",
-     "s": "todo",
-     "w": "seg 23/11",
-     "n": "",
-     "q": "Luiza + Otávio + Victor",
-     "c": "cs-ogro-steaks#14",
-     "u": "https://github.com/dev-seven7/cs-ogro-steaks/issues/14"
-    },
-    {
-     "t": "Inauguração SG: Victor confirma com o Matheus se o Jimmy vai no dia 03 ou 04/12 + quem capta (mobile, com o Victor guiando)",
-     "s": "doing",
-     "w": "esta semana",
-     "n": "A Luiza não vai. A Manu consegue no dia 03, não no 04.",
-     "q": "Victor + Matheus · Manu",
-     "c": "cs-ogro-steaks#14",
-     "u": "https://github.com/dev-seven7/cs-ogro-steaks/issues/14#issuecomment-7105145158"
-    },
-    {
-     "t": "Gravação completa de SG com a operação em treinamento (entrega na rua, trends)",
-     "s": "todo",
-     "w": "semana que vem",
-     "n": "",
-     "q": "Otávio + Victor + Luiza",
-     "c": "cs-ogro-steaks#14",
-     "u": "https://github.com/dev-seven7/cs-ogro-steaks/issues/14"
-    }
-   ]
-  },
-  {
-   "id": "h-criativos",
-   "emoji": "🎯",
-   "t": "4 · Criativos Ghost e expansão",
-   "quem": "Luiza · Otávio · Matheus · Manu",
-   "itens": [
-    {
-     "t": "Otávio fecha TODAS as edições da semana pra Luiza agendar",
-     "s": "todo",
-     "w": "até ter 24/11",
-     "n": "",
-     "q": "Otávio",
-     "c": "",
-     "u": ""
-    },
-    {
-     "t": "Mandar Copa e Lapa no grupo OLV Marketing Ghost Lab (não no privado)",
-     "s": "todo",
-     "w": "seg 23/11 de manhã",
-     "n": "",
-     "q": "Luiza",
-     "c": "cs-olivers#259",
-     "u": "https://github.com/dev-seven7/cs-olivers/issues/259"
-    },
-    {
-     "t": "Fechar os 9 que faltam e mandar pro Celso",
-     "s": "todo",
-     "w": "até o fim do dia 23/11",
-     "n": "",
-     "q": "Luiza + Otávio",
-     "c": "cs-olivers#259",
-     "u": "https://github.com/dev-seven7/cs-olivers/issues/259"
-    },
-    {
-     "t": "Status dos criativos Ghost: 4 do Geral prontos, faltam 9 (3 Copa, 3 Lapa, 3 Geral)",
-     "s": "done",
-     "w": "respondido na call de 23/11",
-     "n": "",
-     "q": "Luiza",
-     "c": "cs-olivers#259",
-     "u": "https://github.com/dev-seven7/cs-olivers/issues/259"
-    },
-    {
-     "t": "Restante da gestão de criativos",
-     "s": "todo",
-     "w": "até sex 27/11",
-     "n": "",
-     "q": "Luiza + Otávio",
-     "c": "cs-olivers#259",
-     "u": "https://github.com/dev-seven7/cs-olivers/issues/259"
-    },
-    {
-     "t": "Gravação com o Matheus (Etapa 1: 4 vídeos por praça) + cortes com legenda",
-     "s": "todo",
-     "w": "esta semana",
-     "n": "",
-     "q": "Matheus + Luiza",
-     "c": "página",
-     "u": "https://dev-seven7.github.io/direcionamento-expansao-olivers/"
-    }
-   ]
-  },
   {
    "id": "h-bf",
    "emoji": "🖤",
-   "t": "5 · Black Friday · sex 27/11",
-   "quem": "Manu · Luiza · Otávio · Victor",
+   "t": "1 · Black Friday: TODAS as edições fechadas hoje",
+   "quem": "Otávio · Luiza",
    "itens": [
     {
-     "t": "Comunicados no Databite por marca (só delivery / só salão)",
+     "t": "Finalizar TODAS as edições da Black Friday: Øliver's, Ogro e Temakeria",
      "s": "todo",
-     "w": "seg 23/11",
+     "w": "qua 25/11, até o fim do dia",
+     "n": "Prioridade nº 1 do dia.",
+     "q": "Otávio + Luiza"
+    },
+    {
+     "t": "Mandar no grupo pra revisão da Manu",
+     "s": "todo",
+     "w": "qua 25/11",
      "n": "",
-     "q": "Manu"
-    },
-    {
-     "t": "Peças por marca prontas (foto, banner do canal próprio, stories)",
-     "s": "todo",
-     "w": "até qua 25/11",
-     "n": "Gravar Black Friday na captação de amanhã (Ogro P.C.Q., Øliver's, Temakeria). O Victor direciona a Ogro.",
-     "q": "Luiza + Otávio + Victor",
-     "c": "cs-olivers#240",
-     "u": "https://github.com/dev-seven7/cs-olivers/issues/240"
-    },
-    {
-     "t": "Aquecimento nas redes (qua e qui) · revelação da promoção na sexta, com stories e feed nas 3 marcas",
-     "s": "todo",
-     "w": "25 e 26/11",
-     "n": "",
-     "q": "Luiza"
-    },
-    {
-     "t": "Dia oficial",
-     "s": "todo",
-     "w": "sex 27/11",
-     "n": "",
-     "q": "Luiza"
-    },
-    {
-     "t": "Campanha iFood (Banner Home + Vídeo Ads): só sex 27 e sáb 28/11, fora da Black Week",
-     "s": "todo",
-     "w": "27 e 28/11",
-     "n": "",
-     "q": "Manu + Matheus",
-     "c": "cs-rob-food#118",
-     "u": "https://github.com/dev-seven7/cs-rob-food/issues/118"
-    },
-    {
-     "t": "Influs da Black Friday: 3 parceiros por marca, recebem o pedido na qui e postam na sex",
-     "s": "todo",
-     "w": "escolher até qua · envio qui 26/11",
-     "n": "Ogro com a base de Niterói; Øliver's e Temakeria com parceiros do Rio e de Araruama.",
-     "q": "Luiza + Victor",
-     "c": "",
-     "u": ""
+     "q": "Otávio + Luiza"
     }
    ]
   },
   {
-   "id": "h-gatola",
-   "emoji": "🎩",
-   "t": "6 · Gatola da Cartola (até 05/12)",
-   "quem": "Luiza · Manu",
+   "id": "h-social",
+   "emoji": "💬",
+   "t": "2 · Interação em TODAS as contas",
+   "quem": "Luiza · Otávio",
    "itens": [
     {
-     "t": "Conteúdos: Ingryd (collab) hoje · Iago e Prizinhas amanhã · Duda (Copacabana) recebe hoje e posta qua/qui",
+     "t": "Comentários respondidos",
      "s": "todo",
-     "w": "seg 23/11",
-     "n": "Não precisa de mais influs pro Gatola.",
-     "q": "Luiza",
-     "c": "cs-olivers#240",
-     "u": "https://github.com/dev-seven7/cs-olivers/issues/240"
-    },
-    {
-     "t": "Stories no Postiz todo dia",
-     "s": "doing",
-     "w": "até qui 26/11",
+     "w": "ao longo do dia",
      "n": "",
-     "q": "Luiza",
-     "c": "cs-olivers#240",
-     "u": "https://github.com/dev-seven7/cs-olivers/issues/240"
+     "q": "Luiza + Otávio"
     },
     {
-     "t": "Envios pras influs",
-     "s": "doing",
-     "w": "esta semana",
-     "n": "",
-     "q": "Luiza",
-     "c": "cs-olivers#240",
-     "u": "https://github.com/dev-seven7/cs-olivers/issues/240"
-    },
-    {
-     "t": "Sugestão de pauta pra assessoria de imprensa",
+     "t": "Stories entrando no horário certo",
      "s": "todo",
-     "w": "seg 23/11",
+     "w": "nos horários da rotina",
      "n": "",
-     "q": "Manu",
-     "c": "cs-olivers#242",
-     "u": "https://github.com/dev-seven7/cs-olivers/issues/242"
+     "q": "Luiza + Otávio"
     },
     {
-     "t": "Banner dos canais com a Alline",
+     "t": "Analisar os últimos posts e engajar com social ativo",
      "s": "todo",
-     "w": "esta semana",
+     "w": "qua 25/11",
      "n": "",
-     "q": "Manu",
-     "c": "cs-olivers#242",
-     "u": "https://github.com/dev-seven7/cs-olivers/issues/242"
+     "q": "Luiza + Otávio"
     }
    ]
   },
   {
-   "id": "h-gestao",
-   "emoji": "🧭",
-   "t": "7 · Gestão da semana",
-   "quem": "Manu",
+   "id": "h-rob",
+   "emoji": "🏢",
+   "t": "3 · Grupo ROB: posts no Instagram e no LinkedIn",
+   "quem": "Luiza · Otávio",
    "itens": [
     {
-     "t": "Call do time 11h20 às 11h40: prioridades do dia e da semana",
-     "s": "done",
-     "w": "feita 23/11 · ata em Atas/",
-     "n": "Luiza, Victor, Otávio e Manu",
-     "q": "Time"
+     "t": "Subir os criativos que a Manu mandou no grupo desde quinta passada (nenhum saiu ainda)",
+     "s": "todo",
+     "w": "qua 25/11",
+     "n": "",
+     "q": "Luiza + Otávio"
     },
     {
-     "t": "Mandar pra Luiza o vídeo do Matheus (recap do Pelé no ROB) e as referências do SushiTone",
+     "t": "Vídeo do Mathias no podcast",
      "s": "todo",
-     "w": "seg 23/11",
+     "w": "qua 25/11",
      "n": "",
-     "q": "Manu",
-     "c": "",
-     "u": ""
-    },
-    {
-     "t": "Daily do time todo dia de manhã (15 a 20 min), como proposta",
-     "s": "todo",
-     "w": "a partir de ter 24/11",
-     "n": "",
-     "q": "Time",
-     "c": "",
-     "u": ""
-    },
-    {
-     "t": "Pedir os reports ao Celso",
-     "s": "todo",
-     "w": "seg 23/11",
-     "n": "",
-     "q": "Manu"
-    },
-    {
-     "t": "Mandar as prioridades da semana no grupo",
-     "s": "todo",
-     "w": "seg 23/11",
-     "n": "",
-     "q": "Manu"
-    },
-    {
-     "t": "Natal Coca-Cola: mandar o documento e marcar a reunião",
-     "s": "todo",
-     "w": "esta semana",
-     "n": "",
-     "q": "Manu",
-     "c": "cs-olivers#243",
-     "u": "https://github.com/dev-seven7/cs-olivers/issues/243"
-    },
-    {
-     "t": "Pauta da 1ª Reunião de MKT",
-     "s": "todo",
-     "w": "ter 24/11 (reunião qua 25/11, 14h às 17h)",
-     "n": "",
-     "q": "Manu"
-    },
-    {
-     "t": "Fala Araruama: responder a proposta pra Temakeria",
-     "s": "todo",
-     "w": "seg 23/11",
-     "n": "",
-     "q": "Manu",
-     "c": "cs-temakeria-universitaria#250",
-     "u": "https://github.com/dev-seven7/cs-temakeria-universitaria/issues/250"
+     "q": "Luiza + Otávio"
     }
    ]
   }
